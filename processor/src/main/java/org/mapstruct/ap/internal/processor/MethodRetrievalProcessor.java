@@ -29,6 +29,7 @@ import org.mapstruct.ap.internal.gem.ObjectFactoryGem;
 import org.mapstruct.ap.internal.gem.SubclassMappingGem;
 import org.mapstruct.ap.internal.gem.SubclassMappingsGem;
 import org.mapstruct.ap.internal.gem.TargetPropertyNameGem;
+import org.mapstruct.ap.internal.gem.SourcePropertyNameGem;
 import org.mapstruct.ap.internal.gem.ValueMappingGem;
 import org.mapstruct.ap.internal.gem.ValueMappingsGem;
 import org.mapstruct.ap.internal.model.common.Parameter;
@@ -419,6 +420,15 @@ public class MethodRetrievalProcessor implements ModelElementProcessor<Void, Lis
                 messager.printMessage(
                     param.getElement(),
                     TargetPropertyNameGem.instanceOn( param.getElement() ).mirror(),
+                    Message.RETRIEVAL_TARGET_PROPERTY_NAME_WRONG_TYPE
+                );
+                return false;
+            }
+
+            if ( param.isSourcePropertyName() && !param.getType().isString() ) {
+                messager.printMessage(
+                    param.getElement(),
+                    SourcePropertyNameGem.instanceOn( param.getElement() ).mirror(),
                     Message.RETRIEVAL_TARGET_PROPERTY_NAME_WRONG_TYPE
                 );
                 return false;

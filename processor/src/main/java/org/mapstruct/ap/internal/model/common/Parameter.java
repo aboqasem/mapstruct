@@ -16,6 +16,7 @@ import org.mapstruct.ap.internal.gem.ContextGem;
 import org.mapstruct.ap.internal.gem.MappingTargetGem;
 import org.mapstruct.ap.internal.gem.TargetTypeGem;
 import org.mapstruct.ap.internal.gem.TargetPropertyNameGem;
+import org.mapstruct.ap.internal.gem.SourcePropertyNameGem;
 import org.mapstruct.ap.internal.util.Collections;
 
 /**
@@ -33,6 +34,7 @@ public class Parameter extends ModelElement {
     private final boolean targetType;
     private final boolean mappingContext;
     private final boolean targetPropertyName;
+    private final boolean sourcePropertyName;
 
     private final boolean varArgs;
 
@@ -45,11 +47,12 @@ public class Parameter extends ModelElement {
         this.targetType = TargetTypeGem.instanceOn( element ) != null;
         this.mappingContext = ContextGem.instanceOn( element ) != null;
         this.targetPropertyName = TargetPropertyNameGem.instanceOn( element ) != null;
+        this.sourcePropertyName = SourcePropertyNameGem.instanceOn( element ) != null;
         this.varArgs = varArgs;
     }
 
     private Parameter(String name, Type type, boolean mappingTarget, boolean targetType, boolean mappingContext,
-                      boolean targetPropertyName,
+                      boolean targetPropertyName, boolean sourcePropertyName,
                       boolean varArgs) {
         this.element = null;
         this.name = name;
@@ -59,11 +62,12 @@ public class Parameter extends ModelElement {
         this.targetType = targetType;
         this.mappingContext = mappingContext;
         this.targetPropertyName = targetPropertyName;
+        this.sourcePropertyName = sourcePropertyName;
         this.varArgs = varArgs;
     }
 
     public Parameter(String name, Type type) {
-        this( name, type, false, false, false, false, false );
+        this( name, type, false, false, false, false, false, false );
     }
 
     public Element getElement() {
@@ -120,6 +124,10 @@ public class Parameter extends ModelElement {
         return targetPropertyName;
     }
 
+    public boolean isSourcePropertyName() {
+        return sourcePropertyName;
+    }
+
     public boolean isVarArgs() {
         return varArgs;
     }
@@ -162,6 +170,7 @@ public class Parameter extends ModelElement {
             "mappingTarget",
             parameterType,
             true,
+            false,
             false,
             false,
             false,
