@@ -7,11 +7,13 @@ package org.mapstruct.ap.test.conditional.targetpropertyname;
 
 import org.mapstruct.Condition;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.TargetPropertyName;
 
 @Mapper
 public interface ErroneousNonStringTargetPropertyNameParameter {
 
+    @Mapping(target = "country", source = "originCountry")
     Employee map(EmployeeDto employee);
 
     @Condition

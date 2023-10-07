@@ -5,15 +5,16 @@
  */
 package org.mapstruct.ap.test.conditional.targetpropertyname;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.mapstruct.Condition;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.TargetPropertyName;
 import org.mapstruct.factory.Mappers;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * @author Filip Hrisafov
@@ -31,6 +32,7 @@ public interface ConditionalMethodInMapperWithAllOptions {
         Set<String> visitedTargets = new LinkedHashSet<>();
     }
 
+    @Mapping(target = "country", source = "originCountry")
     void map(EmployeeDto employeeDto,
              @MappingTarget Employee employee,
              @Context PresenceUtils utils);

@@ -5,6 +5,8 @@
  */
 package org.mapstruct.ap.test.conditional.targetpropertyname;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mapstruct.ap.testutil.IssueKey;
 import org.mapstruct.ap.testutil.ProcessorTest;
@@ -13,8 +15,6 @@ import org.mapstruct.ap.testutil.compilation.annotation.CompilationResult;
 import org.mapstruct.ap.testutil.compilation.annotation.Diagnostic;
 import org.mapstruct.ap.testutil.compilation.annotation.ExpectedCompilationOutcome;
 import org.mapstruct.ap.testutil.runner.GeneratedSource;
-
-import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,7 +46,7 @@ public class TargetPropertyNameTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setFirstName( "  " );
         employeeDto.setLastName( "Testirovich" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -71,7 +71,7 @@ public class TargetPropertyNameTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setFirstName( "  " );
         employeeDto.setLastName( "Testirovich" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -94,7 +94,7 @@ public class TargetPropertyNameTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setFirstName( "  " );
         employeeDto.setLastName( "Testirovich" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -122,7 +122,7 @@ public class TargetPropertyNameTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setFirstName( "  " );
         employeeDto.setLastName( "Testirovich" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -155,7 +155,7 @@ public class TargetPropertyNameTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setFirstName( "  " );
         employeeDto.setLastName( "Testirovich" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -185,7 +185,7 @@ public class TargetPropertyNameTest {
 
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setLastName( "  " );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -204,7 +204,7 @@ public class TargetPropertyNameTest {
 
         employeeDto = new EmployeeDto();
         employeeDto.setLastName( "Tester" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
         );
@@ -234,13 +234,13 @@ public class TargetPropertyNameTest {
 
         EmployeeDto bossEmployeeDto = new EmployeeDto();
         bossEmployeeDto.setLastName( "Boss Tester" );
-        bossEmployeeDto.setCountry( "US" );
+        bossEmployeeDto.setOriginCountry( "US" );
         bossEmployeeDto.setAddresses( Collections.singletonList( new AddressDto(
             "Testing St. 10" ) ) );
 
         employeeDto = new EmployeeDto();
         employeeDto.setLastName( "Tester" );
-        employeeDto.setCountry( "US" );
+        employeeDto.setOriginCountry( "US" );
         employeeDto.setBoss( bossEmployeeDto );
         employeeDto.setAddresses(
             Collections.singletonList( new AddressDto( "Testing St. 6" ) )
@@ -259,17 +259,17 @@ public class TargetPropertyNameTest {
             .containsExactly( "Testing St. 10" );
         assertThat( allPropsUtilsWithSource.visited )
             .containsExactly(
+                "country",
                 "firstName",
                 "lastName",
                 "title",
-                "country",
                 "active",
                 "age",
                 "boss",
+                "boss.country",
                 "boss.firstName",
                 "boss.lastName",
                 "boss.title",
-                "boss.country",
                 "boss.active",
                 "boss.age",
                 "boss.boss",
@@ -293,7 +293,7 @@ public class TargetPropertyNameTest {
             @Diagnostic(
                 kind = javax.tools.Diagnostic.Kind.ERROR,
                 type = ErroneousNonStringTargetPropertyNameParameter.class,
-                line = 18,
+                line = 20,
                 message = "@TargetPropertyName can only by applied to a String parameter."
             )
         }

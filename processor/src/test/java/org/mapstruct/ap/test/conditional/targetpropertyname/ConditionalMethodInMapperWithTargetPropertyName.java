@@ -7,6 +7,7 @@ package org.mapstruct.ap.test.conditional.targetpropertyname;
 
 import org.mapstruct.Condition;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.TargetPropertyName;
 import org.mapstruct.factory.Mappers;
 
@@ -20,6 +21,7 @@ public interface ConditionalMethodInMapperWithTargetPropertyName {
     ConditionalMethodInMapperWithTargetPropertyName INSTANCE
         = Mappers.getMapper( ConditionalMethodInMapperWithTargetPropertyName.class );
 
+    @Mapping(target = "country", source = "originCountry")
     Employee map(EmployeeDto employee);
 
     @Condition

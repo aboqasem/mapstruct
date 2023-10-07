@@ -15,7 +15,7 @@ public class EmployeeDto implements DomainModel {
     private String firstName;
     private String lastName;
     private String title;
-    private String country;
+    private String originCountry;
     private boolean active;
     private int age;
 
@@ -48,12 +48,12 @@ public class EmployeeDto implements DomainModel {
         this.title = title;
     }
 
-    public String getCountry() {
-        return country;
+    public String getOriginCountry() {
+        return originCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setOriginCountry(String originCountry) {
+        this.originCountry = originCountry;
     }
 
     public boolean isActive() {

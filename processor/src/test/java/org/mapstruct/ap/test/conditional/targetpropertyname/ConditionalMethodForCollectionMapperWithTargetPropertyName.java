@@ -5,12 +5,13 @@
  */
 package org.mapstruct.ap.test.conditional.targetpropertyname;
 
+import java.util.Collection;
+
 import org.mapstruct.Condition;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.TargetPropertyName;
 import org.mapstruct.factory.Mappers;
-
-import java.util.Collection;
 
 /**
  * @author Nikola Ivačič
@@ -21,6 +22,7 @@ public interface ConditionalMethodForCollectionMapperWithTargetPropertyName {
     ConditionalMethodForCollectionMapperWithTargetPropertyName INSTANCE
         = Mappers.getMapper( ConditionalMethodForCollectionMapperWithTargetPropertyName.class );
 
+    @Mapping(target = "country", source = "originCountry")
     Employee map(EmployeeDto employee);
 
     @Condition
