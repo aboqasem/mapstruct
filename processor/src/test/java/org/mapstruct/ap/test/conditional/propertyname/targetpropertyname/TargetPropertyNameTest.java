@@ -3,11 +3,16 @@
  *
  * Licensed under the Apache License version 2.0, available at http://www.apache.org/licenses/LICENSE-2.0
  */
-package org.mapstruct.ap.test.conditional.targetpropertyname;
+package org.mapstruct.ap.test.conditional.propertyname.targetpropertyname;
 
 import java.util.Collections;
 
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.mapstruct.ap.test.conditional.propertyname.Address;
+import org.mapstruct.ap.test.conditional.propertyname.AddressDto;
+import org.mapstruct.ap.test.conditional.propertyname.DomainModel;
+import org.mapstruct.ap.test.conditional.propertyname.Employee;
+import org.mapstruct.ap.test.conditional.propertyname.EmployeeDto;
 import org.mapstruct.ap.testutil.IssueKey;
 import org.mapstruct.ap.testutil.ProcessorTest;
 import org.mapstruct.ap.testutil.WithClasses;
@@ -293,7 +298,7 @@ public class TargetPropertyNameTest {
             @Diagnostic(
                 kind = javax.tools.Diagnostic.Kind.ERROR,
                 type = ErroneousNonStringTargetPropertyNameParameter.class,
-                line = 20,
+                line = 22,
                 message = "@TargetPropertyName can only by applied to a String parameter."
             )
         }
