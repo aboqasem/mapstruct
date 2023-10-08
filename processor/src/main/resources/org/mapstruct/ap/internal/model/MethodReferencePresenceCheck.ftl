@@ -9,4 +9,5 @@
 <#if isNegate()>!</#if><@includeModel object=methodReference
                presenceCheck=true
                targetPropertyName=ext.targetPropertyName
+               sourcePropertyName=ext.sourcePropertyName
                targetType=ext.targetType/>

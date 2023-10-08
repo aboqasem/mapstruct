@@ -46,6 +46,8 @@
             ${param.variableName}<#t>
         <#elseif param.targetPropertyName>
             "${ext.targetPropertyName}"<#t>
+        <#elseif param.sourcePropertyName>
+            "${ext.sourcePropertyName}"<#t>
         <#elseif param.sourceRHS??>
             <@_assignment assignmentToUse=param.sourceRHS/><#t>
         <#elseif assignment??>
@@ -70,5 +72,6 @@
                targetReadAccessorName=ext.targetReadAccessorName
                targetWriteAccessorName=ext.targetWriteAccessorName
                targetPropertyName=ext.targetPropertyName
+               sourcePropertyName=ext.sourcePropertyName
                targetType=singleSourceParameterType/>
 </#macro>

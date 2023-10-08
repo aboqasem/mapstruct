@@ -104,6 +104,7 @@ public class Parameter extends ModelElement {
             + ( targetType ? "@TargetType " : "" )
             + ( mappingContext ? "@Context " : "" )
             + ( targetPropertyName ? "@TargetPropertyName " : "" )
+            + ( sourcePropertyName ? "@SourcePropertyName " : "" )
             +  "%s " + name;
     }
 
@@ -219,11 +220,16 @@ public class Parameter extends ModelElement {
       return parameters.stream().filter( Parameter::isTargetPropertyName ).findAny().orElse( null );
     }
 
+    public static Parameter getSourcePropertyNameParameter(List<Parameter> parameters) {
+      return parameters.stream().filter( Parameter::isSourcePropertyName ).findAny().orElse( null );
+    }
+
     private static boolean isSourceParameter( Parameter parameter ) {
         return !parameter.isMappingTarget() &&
                !parameter.isTargetType() &&
                !parameter.isMappingContext() &&
-               !parameter.isTargetPropertyName();
+               !parameter.isTargetPropertyName() &&
+               !parameter.isSourcePropertyName();
     }
 
 }

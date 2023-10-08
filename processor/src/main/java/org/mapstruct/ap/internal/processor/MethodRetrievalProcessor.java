@@ -429,7 +429,7 @@ public class MethodRetrievalProcessor implements ModelElementProcessor<Void, Lis
                 messager.printMessage(
                     param.getElement(),
                     SourcePropertyNameGem.instanceOn( param.getElement() ).mirror(),
-                    Message.RETRIEVAL_TARGET_PROPERTY_NAME_WRONG_TYPE
+                    Message.RETRIEVAL_SOURCE_PROPERTY_NAME_WRONG_TYPE
                 );
                 return false;
             }

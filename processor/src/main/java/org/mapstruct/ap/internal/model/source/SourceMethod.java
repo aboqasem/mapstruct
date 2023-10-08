@@ -48,6 +48,7 @@ public class SourceMethod implements Method {
     private final Parameter mappingTargetParameter;
     private final Parameter targetTypeParameter;
     private final Parameter targetPropertyNameParameter;
+    private final Parameter sourcePropertyNameParameter;
     private final boolean isObjectFactory;
     private final boolean isPresenceCheck;
     private final Type returnType;
@@ -250,6 +251,7 @@ public class SourceMethod implements Method {
         this.mappingTargetParameter = Parameter.getMappingTargetParameter( parameters );
         this.targetTypeParameter = Parameter.getTargetTypeParameter( parameters );
         this.targetPropertyNameParameter = Parameter.getTargetPropertyNameParameter( parameters );
+        this.sourcePropertyNameParameter = Parameter.getSourcePropertyNameParameter( parameters );
         this.hasObjectFactoryAnnotation = ObjectFactoryGem.instanceOn( executable ) != null;
         this.isObjectFactory = determineIfIsObjectFactory();
         this.isPresenceCheck = determineIfIsPresenceCheck();
@@ -266,8 +268,9 @@ public class SourceMethod implements Method {
         boolean hasNoSourceParameters = getSourceParameters().isEmpty();
         boolean hasNoMappingTargetParam = getMappingTargetParameter() == null;
         boolean hasNoTargetPropertyNameParam = getTargetPropertyNameParameter() == null;
+        boolean hasNoSourcePropertyNameParam = getSourcePropertyNameParameter() == null;
         return !isLifecycleCallbackMethod() && !returnType.isVoid()
-            && hasNoMappingTargetParam && hasNoTargetPropertyNameParam
+            && hasNoMappingTargetParam && hasNoTargetPropertyNameParam && hasNoSourcePropertyNameParam
             && ( hasObjectFactoryAnnotation || hasNoSourceParameters );
     }
 
@@ -384,6 +387,10 @@ public class SourceMethod implements Method {
 
     public Parameter getTargetPropertyNameParameter() {
         return targetPropertyNameParameter;
+    }
+
+    public Parameter getSourcePropertyNameParameter() {
+        return sourcePropertyNameParameter;
     }
 
     public boolean isIterableMapping() {

@@ -215,7 +215,8 @@ public class TypeSelector implements MethodSelector {
             if ( parameter.isTargetType() == candidate.isTargetType()
                 && parameter.isMappingTarget() == candidate.isMappingTarget()
                 && parameter.isMappingContext() == candidate.isMappingContext()
-                && parameter.isTargetPropertyName() == candidate.isTargetPropertyName()) {
+                && parameter.isTargetPropertyName() == candidate.isTargetPropertyName()
+                && parameter.isSourcePropertyName() == candidate.isSourcePropertyName()) {
                 result.add( candidate );
             }
         }
